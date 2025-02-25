@@ -1,0 +1,48 @@
+#   PYTHON / FASTAPI BACKEND
+venv/
+.venv/
+env/
+ENV/
+.venv.bak/
+
+# Pliki cache i tymczasowe
+__pycache__/
+*.py[cod]
+*~ 
+*.swp
+*.swo
+
+# Logi i pliki tymczasowe
+*.log
+
+# Pliki testowe / cache
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Inne możliwe pliki (np. zipy)
+*.egg-info/
+*.egg
+
+#   ANGULAR / FRONTEND
+dist/
+build/
+.angular/
+coverage/
+
+#   BEHAVE / TESTY BDD
+reports/
+test-reports/
+logs/
+screenshots/
+
+#   SYSTEM / IDE / EDITORY
+.DS_Store
+Thumbs.db
+
+# Pliki konfiguracyjne edytorów
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
