@@ -1,0 +1,126 @@
+<div class="container">
+
+  <div class="menu">
+
+    <h3>Najnowszy kurs: </h3>
+    <div class="block">
+      <div class="labels">
+        <label>Waluta: </label>
+        <label>Kurs: </label>
+      </div>
+
+      <div class="combobox">
+        <select id="currency-select" [(ngModel)]="selectedCurrency">
+          <option value="all" selected>Wszystkie</option>
+          <option *ngFor="let currency of currencyArr" [value]="currency">
+            ({{ currency }})
+          </option>
+        </select>
+
+        <select id="table-select" [(ngModel)]="selectedTable">
+          <option value="A">Średni</option>
+          <option value="C">Kupna/Sprzedaży</option>
+        </select>
+
+      </div>
+    </div>
+    <button id="get-latest" (click)="getLatestRates()">Pobierz</button>
+
+
+    <h3>Pozostałe opcje:</h3>
+
+    <div class="block">
+      <div class="labels">
+        <label>Rok: </label>
+      </div>
+      <div class="combobox">
+        <select id="year-select" [(ngModel)]="selectedYear">
+          <option *ngFor="let y of yearsArr" [value]="y">{{ y }}</option>
+        </select>  
+      </div>
+    </div>
+    <button id="get-year" (click)="getRateForYear()">Pobierz rok</button>
+
+    <div class="block">
+      <div class="labels">
+        <label>Kwartał:</label>
+      </div>
+      <div class="combobox">    
+        <select id="quarter-select" [(ngModel)]="selectedQuarter">
+          <option value="0">I</option>
+          <option value="1">II</option>
+          <option value="2">III</option>
+          <option value="3">IV</option>
+        </select>
+      </div>
+    </div>
+    <button id="get-quarter" (click)="getRateForQuarter()">Pobierz</button>
+    
+    <div class="block">
+      <div class="labels">       
+        <label>Miesiąc: </label>
+      </div>
+      <div class="combobox">
+        <select id="month-select" [(ngModel)]="selectedMonth">
+          <option value="1">Styczeń</option>
+          <option value="2">Luty</option>
+          <option value="3">Marzec</option>
+          <option value="4">Kwiecień</option>
+          <option value="5">Maj</option>
+          <option value="6">Czerwiec</option>
+          <option value="7">Lipiec</option>
+          <option value="8">Sierpień</option>
+          <option value="9">Wrzesień</option>
+          <option value="10">Październik</option>
+          <option value="11">Listopad</option>
+          <option value="12">Grudzień</option>
+        </select>
+      </div>
+    </div>
+    <button id="get-month" (click)="getRateForMonth()">Pobierz</button>
+   
+    <div class="block">
+      <div class="labels">
+        <label>Dzień: </label>
+      </div>
+      <div class="combobox">
+        <input
+          type="date"
+          id="date-input"
+          min="2003-01-01"
+          [max]="today"
+          [(ngModel)]="selectedDate"
+        />        
+      </div>
+    </div>
+    <button id="get-date" (click)="getRateForDate()">Pobierz</button>
+  </div>
+
+  <div class="body">    
+
+    <div class="header">
+      <h1>Aplikacja internetowa do pobierania kursów walut</h1>
+    </div>
+
+    <div class="result"> 
+      <table>
+        <thead>
+          <tr>
+            <th>Waluta\Data</th>
+            <th *ngFor="let date of datesArr">{{ date }}</th>
+          </tr>
+        </thead>
+        <tbody>       
+          <tr *ngFor="let rateRow of resultArr">
+            <td class="row-header">{{ rateRow.code }}</td>
+            <td *ngFor="let rate of rateRow.rates">{{ rate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="responseMessage" class="error">
+      {{ responseMessage }}
+    </div>
+  </div>
+
+</div>
